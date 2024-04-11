@@ -24,24 +24,13 @@ public class VendingMachine {
     }
 
     public void start() {
-        try {
-            inputInitialMoney();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            inputInitialMoney();
-        }
-        try {
-            inputProducts();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            inputProducts();
-        }
-        try {
-            inputUsersMoney();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            inputUsersMoney();
-        }
+        readInitialMoney();
+        readProducts();
+        readUsersMoney();
+        purchase();
+    }
+
+    private void purchase() {
         while(true) {
             if(mustGiveChange()) {
                 giveChange();
@@ -53,6 +42,33 @@ public class VendingMachine {
                 System.out.println(e.getMessage());
                 buyProduct();
             }
+        }
+    }
+
+    private void readUsersMoney() {
+        try {
+            inputUsersMoney();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputUsersMoney();
+        }
+    }
+
+    private void readProducts() {
+        try {
+            inputProducts();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputProducts();
+        }
+    }
+
+    private void readInitialMoney() {
+        try {
+            inputInitialMoney();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputInitialMoney();
         }
     }
 
